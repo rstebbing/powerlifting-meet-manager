@@ -765,6 +765,8 @@ class SummaryDialog(QtGui.QDialog):
     def set_lifter(self, lifter):
         self.lifter = lifter
 
+        self.setWindowTitle('Summary: %s' % lifter.name)
+
         # Get team info as sorted by team name
         best_lifter, best_total, team_info = lifter.overall_info()
         team_info = sorted(team_info.iteritems(), key=lambda x: x[0].lower())
