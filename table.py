@@ -664,6 +664,8 @@ class PerformanceDialog(QtGui.QDialog):
     def set_lifter(self, lifter):
         self.lifter = lifter
 
+        self.setWindowTitle('Performance: %s' % lifter.name)
+
         # Set lifter information
         self.lifter_info.setText(
             '%s, %.1f, %s' % (lifter.name, lifter.weight, lifter.team)
