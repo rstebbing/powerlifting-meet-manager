@@ -37,7 +37,6 @@ TODO
 ----
 
 - Correct scoring when a lifter "bombs out".
-- Add rack height as a lifter field.
 - Add options dialog to control team scoring.
 - Dynamic fields.
 
