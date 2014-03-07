@@ -38,10 +38,11 @@ class Lifter(object):
     COMPLETED_LIFT = [GOOD_LIFT, FAIL_LIFT, PASS_LIFT]
 
     LIFTS = ['squat', 'bench', 'deadlift']
-    ATTRIBUTES = ['name', 'gender', 'weight', 'team', 'flight', 'lifter_id',
-        'lifts', 'lift_record']
+    ATTRIBUTES = ['name', 'gender', 'weight', 'rack_height',
+                  'team', 'flight', 'lifter_id',
+                  'lifts', 'lift_record']
 
-    def __init__(self, name, gender, weight, team=None, flight=0,
+    def __init__(self, name, gender, weight, rack_height, team=None, flight=0,
         lifter_id=None, collection=None, **kwargs):
 
         # Check gender
@@ -52,6 +53,7 @@ class Lifter(object):
         self.name = name
         self.gender = gender
         self.weight = weight
+        self.rack_height = rack_height
         self.team = team
         self.lifter_id = lifter_id
         self.flight = flight
