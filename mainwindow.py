@@ -22,6 +22,7 @@ class AddLifterDialog(QtGui.QDialog):
         ('name', '&Name', '', None),
         ('gender', '&Gender', 'M', None),
         ('weight', '&Weight', '', 'toDouble'),
+        ('rack_height', '&Rack Height', '', 'toInt'),
         ('team', '&Team', '', None),
         ('squat_0', '&Squat 1', '', 'toDouble'),
         ('bench_0', '&Bench 1', '', 'toDouble'),

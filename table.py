@@ -92,6 +92,7 @@ class TableModel(QtCore.QAbstractTableModel):
         Section('team', 'Team', '%s', None, False),
         Section('name', 'Name', '%s', None, False),
         Section('weight', 'Weight', '%.1f', None, False),
+        Section('rack_height', 'Rack Height', '%d', 'toInt', False),
         Section('squat_0', 'Squat 1', '%.1f', 'toDouble', True),
         Section('squat_1', 'Squat 2', '%.1f', 'toDouble', True),
         Section('squat_2', 'Squat 3', '%.1f', 'toDouble', True),
