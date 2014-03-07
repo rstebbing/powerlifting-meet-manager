@@ -16,9 +16,9 @@ WEIGHT_CLASSES_IPF2011 = {
 }
 
 WEIGHT_CLASSES_OLD = {
-    'M' : np.array([52, 56, 60, 67.5, 75, 82.5, 90, 100, 110, 125], 
+    'M' : np.array([52, 56, 60, 67.5, 75, 82.5, 90, 100, 110, 125],
         dtype=float),
-    'F' : np.array([44, 48, 52, 56, 60, 67.5, 75, 82.5, 90], 
+    'F' : np.array([44, 48, 52, 56, 60, 67.5, 75, 82.5, 90],
         dtype=float)
 }
 
@@ -39,11 +39,11 @@ class Lifter(object):
 
     LIFTS = ['squat', 'bench', 'deadlift']
     ATTRIBUTES = ['name', 'gender', 'weight', 'team', 'flight', 'lifter_id',
-        'lifts', 'lift_record'] 
+        'lifts', 'lift_record']
 
-    def __init__(self, name, gender, weight, team=None, flight=0, 
+    def __init__(self, name, gender, weight, team=None, flight=0,
         lifter_id=None, collection=None, **kwargs):
-        
+
         # Check gender
         if gender not in self.GENDERS:
             raise ValueError, 'gender "%s" not in %s' % (gender, self.GENDERS)
@@ -130,7 +130,7 @@ class Lifter(object):
 
         elif self.lift_record[index] != self.SET_LIFT:
             logger.warning('lift=%s, attempt=%d is not in set position. ' \
-                'Set at %s for %r', 
+                'Set at %s for %r',
                 lift, attempt, self.lift_record[index], self)
 
         # Set lift record
@@ -174,7 +174,7 @@ class Lifter(object):
     def overall_info(self):
         if self.collection is None:
             return None
-        
+
         collection = self.collection()
 
         if collection is None:
@@ -206,8 +206,8 @@ for lift in Lifter.LIFTS:
 
         attr = '%s_%d' % (lift, attempt)
         setattr(Lifter,attr, make_property(lift, attempt))
-        
-# LifterCollection  
+
+# LifterCollection
 class LifterCollection(object):
     ATTRIBUTES = ['map_', 'id_count', 'top']
 
@@ -243,12 +243,12 @@ class LifterCollection(object):
             if e.startswith('REV_'):
                 e = e.strip('REV_')
                 reverse = True
-    
+
             def key(i):
                 return getattr(i, e)
 
             l = sorted(l, key=key, reverse=reverse)
-        
+
         return l
 
     def overall_info(self):
@@ -290,7 +290,7 @@ class LifterCollection(object):
     # Convenience
     def __getitem__(self, lifter_id):
         return self.map_[lifter_id]
-            
+
     # Pickle
     def __getstate__(self):
         return [getattr(self, attr) for attr in self.ATTRIBUTES]
@@ -323,7 +323,7 @@ def test_Lifter():
 
     print lifter.total
     print lifter.points
-    
+
 # test_LifterCollection
 def test_LifterCollection():
     collection = LifterCollection()
@@ -339,8 +339,8 @@ def main():
     from pickle_ import dump, load
 
     dump('l', l)
-    a = load('l') 
-    
+    a = load('l')
+
 # main
 if __name__ == '__main__':
     main()

@@ -1,6 +1,6 @@
 # wilks.py
 
-# Small script to parse the Wilks tables from 
+# Small script to parse the Wilks tables from
 # http://www.wimwam.nl/wilksformula.htm and present functions to calculate
 # required quantities
 

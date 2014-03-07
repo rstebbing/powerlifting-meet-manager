@@ -9,7 +9,7 @@ from PyQt4 import QtGui
 BASIC_FMT = '<%(asctime)s> %(levelname)s::%(module)s.%(funcName)s [%(lineno)d]:: %(message)s'
 BASIC_DATEFMT = '%H:%M:%S'
 basic_formatter = logging.Formatter(BASIC_FMT, BASIC_DATEFMT)
-            
+
 # basic_logger
 basic_handler = logging.StreamHandler(sys.stderr)
 basic_handler.setFormatter(basic_formatter)
@@ -27,20 +27,20 @@ class QtHandler(Handler):
         logging.ERROR : QtGui.QMessageBox.critical,
         logging.CRITICAL : QtGui.QMessageBox.critical
     }
-        
+
     def __init__(self, parent=None):
         Handler.__init__(self)
         self.parent = parent
 
     def emit(self, record):
-        # Don't emit at levels with no message box 
+        # Don't emit at levels with no message box
         try:
             msg_box = self.MESSAGE_BOXES[record.levelno]
         except KeyError:
             return
 
         msg_box(
-            self.parent, 
+            self.parent,
             record.levelname,
             self.format(record)
         )

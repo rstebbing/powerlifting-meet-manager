@@ -17,7 +17,7 @@ Quick Start
 To launch:
 
     python main.py
-    
+
 Use `Add` to add a lifter.
 Each flight can be selected by clicking on the `Flight` heading under `Results`.
 All numerical fields under `Results` can then be used to sort the lifters.

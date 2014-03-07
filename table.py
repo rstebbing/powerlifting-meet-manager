@@ -32,7 +32,7 @@ border:1px solid black;
 padding:3px 7px 2px 7px;
 }
 
-table.results th 
+table.results th
 {
 font-size:1.0em;
 font-weight:bold;
@@ -83,7 +83,7 @@ ${tbody}
 </table>
 </div>
 ''')
-        
+
 # TableModel
 class TableModel(QtCore.QAbstractTableModel):
     TRANSLATE_SECTION = [
@@ -141,7 +141,7 @@ class TableModel(QtCore.QAbstractTableModel):
         section_info = self.TRANSLATE_SECTION[section]
 
         return lifter, section_info
-       
+
     def data(self, index, role):
         if not index.isValid():
             return QtCore.QVariant()
@@ -181,7 +181,7 @@ class TableModel(QtCore.QAbstractTableModel):
                     font.setItalic(True)
 
                 return font
-                
+
         return QtCore.QVariant()
 
     def setData(self, index, value, role):
@@ -217,7 +217,7 @@ class TableModel(QtCore.QAbstractTableModel):
             self.model_changed.emit()
 
             return True
-        
+
         return False
 
     def validate_lift(self, index, valid):
@@ -256,7 +256,7 @@ class TableModel(QtCore.QAbstractTableModel):
             flags |= QtCore.Qt.ItemIsEditable
 
         return flags
-        
+
     def rowCount(self, parent):
         return len(self.lifters)
 
@@ -335,7 +335,7 @@ class TableModel(QtCore.QAbstractTableModel):
         # Only reverse first attribute as others are used to tie-break
         if self.next_sort == QtCore.Qt.DescendingOrder:
             sort_args[0] = 'REV_' + sort_args[0]
-            
+
         self.lifters_ = self.lifters_map.sorted_by(*sort_args)
 
     # Add / remove methods
@@ -353,8 +353,8 @@ class TableModel(QtCore.QAbstractTableModel):
             return
 
         lifter, section_info = self.index_to_lifter(index)
-        self.lifters_map.remove(lifter) 
-        
+        self.lifters_map.remove(lifter)
+
         self.sorted_by()
         self.reset()
 
@@ -440,7 +440,7 @@ class TableModel(QtCore.QAbstractTableModel):
                 # Get data as string
                 value = getattr(lifter, section_info.attribute)
                 data = section_info.format % value
-                
+
                 # If a lift, set up style string
                 style_str = '"'
                 if section_info.is_lift:
@@ -460,7 +460,7 @@ class TableModel(QtCore.QAbstractTableModel):
                         style_str += 'text-decoration:line-through;' \
                             'font-style:italic;'
                     elif record == Lifter.SET_LIFT:
-                        style_str += 'font-style:italic;' 
+                        style_str += 'font-style:italic;'
 
                 style_str += '"'
 
@@ -472,13 +472,13 @@ class TableModel(QtCore.QAbstractTableModel):
 
             row_str += '</tr>\n'
             tbody += row_str
-        
+
         # XXX Set title
         title = ''
 
         # Save full table
         html_table = HTML_TEMPLATE.substitute(
-            title=title, 
+            title=title,
             best_team=best_team,
             best_lifter=best_lifter,
             tsum=tsum,
@@ -498,7 +498,7 @@ class TableView(QtGui.QTableView):
         QtGui.QTableView.__init__(self, parent)
 
         self.setModel(model)
-        
+
         self.setup_menus()
         self.setup_ui()
 
@@ -548,7 +548,7 @@ class TableView(QtGui.QTableView):
 
         self.setSelectionBehavior(QtGui.QAbstractItemView.SelectItems)
         self.setSelectionMode(QtGui.QAbstractItemView.SingleSelection)
-    
+
     def contextMenuEvent(self, event):
         # Check from mouse
         if event.reason() != QtGui.QContextMenuEvent.Mouse:
@@ -603,7 +603,7 @@ class TableView(QtGui.QTableView):
 # PerformanceDialog
 class PerformanceDialog(QtGui.QDialog):
     def __init__(self, parent=None, flags=QtCore.Qt.Dialog):
-        QtGui.QDialog.__init__(self, parent, flags) 
+        QtGui.QDialog.__init__(self, parent, flags)
 
         self.setup_ui()
 
@@ -627,7 +627,7 @@ class PerformanceDialog(QtGui.QDialog):
 
         attributes = ['team_total', 'best_total', 'best_team', 'difference',
             'projected_points', 'projected_total']
-        titles = ['Team total', 'Best total', 'Best team', 'Difference', 
+        titles = ['Team total', 'Best total', 'Best team', 'Difference',
             'Projected points', 'Projected total']
 
         for i, (attr, title) in enumerate(zip(attributes, titles)):
@@ -724,7 +724,7 @@ class PerformanceDialog(QtGui.QDialog):
 # SummaryDialog
 class SummaryDialog(QtGui.QDialog):
     def __init__(self, parent=None, flags=QtCore.Qt.Dialog):
-        QtGui.QDialog.__init__(self, parent, flags) 
+        QtGui.QDialog.__init__(self, parent, flags)
 
         self.setup_ui()
 
@@ -738,7 +738,7 @@ class SummaryDialog(QtGui.QDialog):
         self.tree.setHeaderItem(header_item)
         header = self.tree.header()
         header.setResizeMode(QtGui.QHeaderView.ResizeToContents)
-        
+
         attributes = ['best_team', 'best_lifter']
         titles = ['Best team', 'Best lifter']
 
@@ -755,7 +755,7 @@ class SummaryDialog(QtGui.QDialog):
             label_layout.addLayout(line_layout)
 
             setattr(self, '%s_label' % attr, label)
-        
+
         main_layout = QtGui.QVBoxLayout()
         main_layout.addWidget(self.tree)
         main_layout.addLayout(label_layout)
@@ -776,7 +776,7 @@ class SummaryDialog(QtGui.QDialog):
         for i, (team, info) in enumerate(team_info):
             if info[0] > best_total[1]:
                 best_total = (team, info[0])
-                
+
             # Construct team item
             team_item = QtGui.QTreeWidgetItem(
                 None,
@@ -791,7 +791,7 @@ class SummaryDialog(QtGui.QDialog):
                 )
                 team_item.addChild(item)
 
-                
+
             # Save top level item
             self.tree.insertTopLevelItem(i, team_item)
 

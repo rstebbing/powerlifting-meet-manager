@@ -30,7 +30,7 @@ class AddLifterDialog(QtGui.QDialog):
     ]
 
     def __init__(self, parent=None, flags=QtCore.Qt.Dialog):
-        QtGui.QDialog.__init__(self, parent, flags) 
+        QtGui.QDialog.__init__(self, parent, flags)
 
         self.setup_ui()
 
@@ -81,7 +81,7 @@ class AddLifterDialog(QtGui.QDialog):
             edit = getattr(self, ti[0] + '_edit')
 
             # Check text
-            text = edit.text() 
+            text = edit.text()
             if text.isEmpty():
                 return False
 
@@ -111,7 +111,7 @@ class AddLifterDialog(QtGui.QDialog):
 
         self.accept()
         return
-    
+
 # MainWindow
 class MainWindow(QtGui.QMainWindow):
     TEMP_FILENAME = '.powerlifting_temp.dat'
@@ -123,7 +123,7 @@ class MainWindow(QtGui.QMainWindow):
         self.setup_ui()
 
         self.last_dir = '.'
-        
+
         # Install global exception handler
         sys.excepthook = self.global_exception_handler
 
@@ -203,7 +203,7 @@ class MainWindow(QtGui.QMainWindow):
         self.auto_mutex = QtCore.QMutex()
 
         # Set automatic timer
-        self.auto_timer = QtCore.QTimer() 
+        self.auto_timer = QtCore.QTimer()
         self.auto_timer.timeout.connect(self.autosave)
 
         self.auto_timer.setSingleShot(False)
@@ -228,14 +228,14 @@ class MainWindow(QtGui.QMainWindow):
 
             # Disconnect on changes to model
             self.table_model.model_changed.disconnect(self.autosave)
-    
+
             # Unlock mutex
             self.auto_mutex.unlock()
 
     def autosave(self):
         # Lock mutex
         self.auto_mutex.lock()
-        
+
         # Save the model to the temp filename
         self.table_model.save(self.TEMP_FILENAME)
 
@@ -244,7 +244,7 @@ class MainWindow(QtGui.QMainWindow):
 
     # Close
     def closeEvent(self, event):
-        result = QtGui.QMessageBox.question(self, 
+        result = QtGui.QMessageBox.question(self,
             'Exit',
             'Are you sure you want to exit?',
             QtGui.QMessageBox.Yes | QtGui.QMessageBox.No ,
@@ -255,13 +255,13 @@ class MainWindow(QtGui.QMainWindow):
             event.ignore()
         else:
             # Disable autosave
-            self.set_autosave(False) 
+            self.set_autosave(False)
 
             # Unregister exception hook
             sys.excepthook = sys.__excepthook__
             event.accept()
-       
-        return 
+
+        return
 
     # Lifter addition/removal slots
     def add_lifter(self):
@@ -284,8 +284,8 @@ class MainWindow(QtGui.QMainWindow):
 
         lifter = lifter_info[0]
 
-        # Check to remove lifter 
-        result = QtGui.QMessageBox.question(self, 
+        # Check to remove lifter
+        result = QtGui.QMessageBox.question(self,
             'Remove Lifter',
             "Remove lifter '%s'?" % lifter.name,
             QtGui.QMessageBox.Yes | QtGui.QMessageBox.No ,
@@ -297,18 +297,18 @@ class MainWindow(QtGui.QMainWindow):
 
         # Remove the lifter at index
         self.table_model.remove(index)
-        
+
     # Control button slots
     def save(self):
         full_path = QtGui.QFileDialog.getSaveFileName(
             self, 'Save', self.last_dir, '*.dat'
-        ) 
+        )
 
         if full_path.isEmpty():
             return
 
         # Decompose full path (e.g. for checks)
-        dir_, filename = os.path.split(str(full_path)) 
+        dir_, filename = os.path.split(str(full_path))
         self.last_dir = dir_
 
         root, ext = os.path.splitext(filename)
@@ -336,13 +336,13 @@ class MainWindow(QtGui.QMainWindow):
     def export(self):
         full_path = QtGui.QFileDialog.getSaveFileName(
             self, 'Export', self.last_dir, '*.html'
-        ) 
+        )
 
         if full_path.isEmpty():
             return
 
         # Decompose full path (e.g. for checks)
-        dir_, filename = os.path.split(str(full_path)) 
+        dir_, filename = os.path.split(str(full_path))
         self.last_dir = dir_
 
         root, ext = os.path.splitext(filename)
@@ -350,7 +350,7 @@ class MainWindow(QtGui.QMainWindow):
         full_path = os.path.join(dir_, root + '.html')
 
         self.table_model.export(full_path)
-        
+
     @classmethod
     def global_exception_handler(cls, type_, exception, tb):
         string_buffer = StringIO.StringIO()
