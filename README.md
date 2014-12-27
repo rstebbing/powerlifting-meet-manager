@@ -4,7 +4,11 @@ powerlifting-meet-manager
 Powerlifting Meet Manager
 
 Simple program to manage a powerlifting competition with three squats, three bench presses, three deadlifts.
-Wilks calculator and team summaries can be done, and the performance of each lifter can be inspected.
+Wilks calculations and team summaries are available, and the performance of each lifter can be inspected.
+
+Author: Richard Stebbing
+
+License: MIT (refer to LICENSE)
 
 Dependencies
 ------------
