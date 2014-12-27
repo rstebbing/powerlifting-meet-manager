@@ -1,4 +1,10 @@
-# wilks.py
+##########################################
+# File: wilks.py                         #
+# Copyright Richard Stebbing 2014.       #
+# Distributed under the MIT License.     #
+# (See accompany file LICENSE or copy at #
+#  http://opensource.org/licenses/MIT)   #
+##########################################
 
 # Small script to parse the Wilks tables from
 # http://www.wimwam.nl/wilksformula.htm and present functions to calculate
