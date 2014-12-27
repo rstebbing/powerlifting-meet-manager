@@ -39,8 +39,3 @@ TODO
 - Correct scoring when a lifter "bombs out".
 - Add options dialog to control team scoring.
 - Dynamic fields.
-
-NOTE
-----
-
-This was written up over a couple of days when I was first starting Python. Go easy ...
